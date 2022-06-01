@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useGameBoard } from "./hooks/useGameBoard";
 
 function App() {
+  const { board, createBoard, removeCards } = useGameBoard(10, 4);
+  useEffect(() => {
+    createBoard();
+  }, []);
+  removeCards({ x: 0, y: 0 }, { x: 1, y: 1 });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <button>시작하기</button>
+      </div>
+      {!board ? <p>loading...</p> : <div></div>}
     </div>
   );
 }
