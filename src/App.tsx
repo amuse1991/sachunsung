@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <button>시작하기</button>
+        <button onClick={createBoard}>시작하기</button>
       </div>
       {!board ? <p>loading...</p> : <Board board={board} />}
     </div>

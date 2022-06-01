@@ -17,7 +17,7 @@ export type THasPathParams = {
   __curve?: number;
 };
 
-const hasPath = (params: THasPathParams) => {
+const hasPath = (params: THasPathParams): any => {
   // debugger;
   const { board, srcPoint, destPoint, __curPoint, __prevDir, __curve } = params;
   const curPoint = __curPoint || srcPoint;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TPoint } from "../types/TPoint";
 
-const MAX_CARD_NUM = 36;
+const MAX_CARD_NUM = 18;
 const MIN_CARD_NUM = 1;
 
 const createRandomValues = () =>
@@ -13,7 +13,7 @@ const shuffle = (unshuffleds: number[]) =>
     .map(({ value }) => value);
 
 export const useGameBoard = (n: number, m: number) => {
-  const [board, setBoard] = useState<(number | number[] | null)[][]>([[]]);
+  const [board, setBoard] = useState<(number | number[])[][]>([[]]);
 
   const createBoard = () => {
     // n * m 크키 TCard 배열 생성
@@ -31,7 +31,7 @@ export const useGameBoard = (n: number, m: number) => {
     setBoard(newBoard);
   };
 
-  const removeCards = (p1: TPoint, p2: TPoint) => {
+  const removePair = (p1: TPoint, p2: TPoint) => {
     if (!board) {
       throw new Error("게임이 시작되지 않았습니다.");
     }
@@ -49,5 +49,7 @@ export const useGameBoard = (n: number, m: number) => {
     });
   };
 
-  return { board, createBoard, removeCards };
+  const hasPath = (p1: TPoint, p2: TPoint) => {};
+
+  return { board, createBoard, removePair };
 };
