@@ -32,23 +32,21 @@ export const useGameBoard = (n: number, m: number) => {
   };
 
   const removeCards = (p1: TPoint, p2: TPoint) => {
-    // if (!board) {
-    //   throw new Error("게임이 시작되지 않았습니다.");
-    // }
-    // const card1 = board[p1.x][p1.y];
-    // const card2 = board[p2.x][p2.y];
-    // // if (card1 !== card2) {
-    // //   throw new Error("두 카드가 일치하지 않습니다.");
-    // // }
-    // console.log(board);
-    // setBoard(prev => {
-    //   if (prev) {
-    //     prev[p1.x][p1.y] = 0;
-    //     prev[p2.x][p2.y] = 0;
-    //     console.log(prev);
-    //     return prev;
-    //   }
-    // });
+    if (!board) {
+      throw new Error("게임이 시작되지 않았습니다.");
+    }
+
+    if (board[p1.x][p1.y] !== board[p2.x][p2.y]) {
+      throw new Error("두 카드가 일치하지 않습니다.");
+    }
+
+    setBoard(prev => {
+      if (!prev) return prev;
+      const next = [...prev];
+      next[p1.x][p1.y] = 0;
+      next[p2.x][p2.y] = 0;
+      return next;
+    });
   };
 
   return { board, createBoard, removeCards };
